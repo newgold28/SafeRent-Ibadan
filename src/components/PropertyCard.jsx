@@ -1,9 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const PropertyCard = ({ id, image, price, location, title, type = "Hostel", landlord_phone, isUnlocked, onUnlock }) => {
+const PropertyCard = ({ id, image, price, location, title, type = "Hostel", landlord_phone, isUnlocked, onUnlock, isSaved, onSave }) => {
     return (
-        <div className="group bg-white rounded-2xl border border-slate-100 overflow-hidden hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full">
+        <div className="group bg-white rounded-2xl border border-slate-100 overflow-hidden hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full relative">
+            {/* Save Button */}
+            <button
+                onClick={(e) => {
+                    e.preventDefault();
+                    if (onSave) onSave(id);
+                }}
+                className={`absolute top-4 right-4 z-20 p-2 rounded-full shadow-md backdrop-blur transition-all ${isSaved ? 'bg-orange-500 text-white' : 'bg-white/90 text-slate-400 hover:text-orange-500'}`}
+            >
+                <svg className="w-5 h-5" fill={isSaved ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+            </button>
+
             <Link to={`/property/${id}`} className="relative h-64 overflow-hidden shrink-0 block">
                 <div className="absolute top-4 left-4 z-10">
                     <span className="px-3 py-1 bg-white/90 backdrop-blur text-xs font-bold text-slate-800 rounded-full shadow-sm">
