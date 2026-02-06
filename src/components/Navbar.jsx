@@ -62,7 +62,7 @@ const Navbar = () => {
                         {user ? (
                             <div className="flex items-center space-x-4">
                                 <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-orange-400 to-amber-600 flex items-center justify-center text-white font-bold shadow-md hidden sm:flex">
-                                    {user.email.charAt(0).toUpperCase()}
+                                    {(user?.email?.charAt(0).toUpperCase() || 'U')}
                                 </div>
                                 <Link to="/dashboard/profile" className="text-slate-600 hover:text-slate-900 font-medium px-3 py-2 transition-colors">
                                     Profile

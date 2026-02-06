@@ -28,7 +28,7 @@ const PropertyCard = ({ id, image, price, location, title, type = "Hostel", land
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent h-24"></div>
                 <div className="absolute bottom-4 left-4 text-white">
-                    <p className="font-bold text-lg">₦{price.toLocaleString()}<span className="text-sm font-normal opacity-90">/yr</span></p>
+                    <p className="font-bold text-lg">₦{(price?.toLocaleString() || '0')}<span className="text-sm font-normal opacity-90">/yr</span></p>
                 </div>
             </Link>
 
