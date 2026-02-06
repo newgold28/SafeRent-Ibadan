@@ -21,7 +21,11 @@ const StudentDashboard = () => {
                 .select(`property_id, properties (*)`)
                 .eq('user_id', user.id);
 
-            if (unlocked) setUnlockedListings(unlocked.map(i => i.properties));
+            let unlockedIds = [];
+            if (unlocked) {
+                setUnlockedListings(unlocked.map(i => i.properties));
+                unlockedIds = unlocked.map(i => i.property_id);
+            }
 
             // Fetch Saved
             const { data: saved } = await supabase
@@ -34,7 +38,12 @@ const StudentDashboard = () => {
             setLoading(false);
         };
         fetchData();
-    }, [user, activeTab]); // Reload when switching tabs might be good for sync
+    }, [user, activeTab]);
+
+    // Helper to check if a property is unlocked
+    const isPropertyUnlocked = (id) => {
+        return unlockedListings.some(u => u.id === id);
+    };
 
     return (
         <div className="min-h-screen bg-slate-50">
@@ -96,10 +105,10 @@ const StudentDashboard = () => {
                                             {...listing}
                                             image={listing.image_url}
                                             type={listing.category}
-                                            isUnlocked={false} // Might be unlocked, but simple logic for now
-                                            onUnlock={() => window.location.href = `/property/${listing.id}`}
+                                            isUnlocked={isPropertyUnlocked(listing.id)}
+                                            onUnlock={(id) => window.location.href = `/property/${id}`}
                                             isSaved={true}
-                                            onSave={null} // Can't unsave from here in this simplified version or easy add
+                                            onSave={null}
                                         />
                                     ))}
                                 </div>
