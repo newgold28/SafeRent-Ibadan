@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ListingCard = ({ id, image, price, location, title, type = "Hostel", landlord_phone, isUnlocked, onUnlock }) => {
+const PropertyCard = ({ id, image, price, location, title, type = "Hostel", landlord_phone, isUnlocked, onUnlock }) => {
     return (
         <div className="group bg-white rounded-2xl border border-slate-100 overflow-hidden hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full">
             <div className="relative h-64 overflow-hidden shrink-0">
@@ -55,4 +55,4 @@ const ListingCard = ({ id, image, price, location, title, type = "Hostel", landl
     );
 };
 
-export default ListingCard;
+export default PropertyCard;
