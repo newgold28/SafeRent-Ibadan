@@ -19,6 +19,7 @@ const Home = () => {
     const [selectedUniversity, setSelectedUniversity] = useState('All');
     const [priceRange, setPriceRange] = useState('All');
     const [category, setCategory] = useState('All');
+    const [bedrooms, setBedrooms] = useState('All'); // Roommate Matching
 
     const fetchUniversities = async () => {
         const { data } = await supabase.from('universities').select('*');
@@ -48,6 +49,7 @@ const Home = () => {
                 .from('properties')
                 .select('*, universities(name)')
                 .eq('status', 'approved') // Only approved
+                .order('is_featured', { ascending: false })
                 .order('created_at', { ascending: false });
 
             // Apply University Filter
@@ -58,6 +60,11 @@ const Home = () => {
             // Apply Category Filter
             if (category !== 'All') {
                 query = query.eq('category', category);
+            }
+
+            // Apply Bedrooms Filter
+            if (bedrooms !== 'All') {
+                query = query.eq('bedrooms', parseInt(bedrooms));
             }
 
             // Apply Price Filter (Client-side filtering is easier for ranges unless using RPC)
@@ -90,7 +97,7 @@ const Home = () => {
 
     useEffect(() => {
         fetchListings();
-    }, [selectedUniversity, category, priceRange]);
+    }, [selectedUniversity, category, priceRange, bedrooms]);
 
     useEffect(() => {
         fetchUserData();
@@ -175,6 +182,22 @@ const Home = () => {
                                 <option value="Flat">Flat</option>
                             </select>
                         </div>
+
+                        {/* Roommate Matching (Bedrooms) */}
+                        <div>
+                            <label className="block text-sm font-medium text-slate-700 mb-2">Rooms (Matching)</label>
+                            <select
+                                value={bedrooms}
+                                onChange={(e) => setBedrooms(e.target.value)}
+                                className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-orange-500 bg-white"
+                            >
+                                <option value="All">Any Size</option>
+                                <option value="1">1 Bedroom (Solo)</option>
+                                <option value="2">2 Bedrooms (Shared)</option>
+                                <option value="3">3 Bedrooms (Group)</option>
+                                <option value="4">4+ Bedrooms</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -202,6 +225,7 @@ const Home = () => {
                                 landlord_phone={listing.landlord_phone}
                                 isUnlocked={unlockedListings.includes(listing.id) || (user && user.id === listing.owner_id)}
                                 isSaved={savedListings.includes(listing.id)}
+                                is_featured={listing.is_featured}
                                 onUnlock={handleUnlockClick}
                                 onSave={handleSaveClick}
                             />

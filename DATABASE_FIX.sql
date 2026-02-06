@@ -29,8 +29,11 @@ create table if not exists public.properties (
   description text,
   bedrooms int default 1,
   bathrooms int default 1,
-  amenities text
+  amenities text,
+  is_featured boolean default false
 );
+
+CREATE INDEX IF NOT EXISTS idx_properties_featured_created ON public.properties (is_featured DESC, created_at DESC);
 
 -- 3. Create Saved Properties Table
 create table if not exists public.saved_properties (
