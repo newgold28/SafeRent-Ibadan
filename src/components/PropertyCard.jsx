@@ -1,9 +1,11 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 const PropertyCard = ({ id, image, price, location, title, type = "Hostel", landlord_phone, isUnlocked, onUnlock }) => {
     return (
         <div className="group bg-white rounded-2xl border border-slate-100 overflow-hidden hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full">
-            <div className="relative h-64 overflow-hidden shrink-0">
+            <Link to={`/property/${id}`} className="relative h-64 overflow-hidden shrink-0 block">
                 <div className="absolute top-4 left-4 z-10">
                     <span className="px-3 py-1 bg-white/90 backdrop-blur text-xs font-bold text-slate-800 rounded-full shadow-sm">
                         {type}
@@ -51,7 +53,7 @@ const PropertyCard = ({ id, image, price, location, title, type = "Hostel", land
                     )}
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

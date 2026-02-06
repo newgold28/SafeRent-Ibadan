@@ -7,7 +7,7 @@ import SignUp from './pages/SignUp';
 import CreateListing from './pages/CreateListing';
 import AdminDashboard from './pages/AdminDashboard';
 import LandlordDashboard from './pages/LandlordDashboard'; // Import
-import StudentDashboard from './pages/StudentDashboard'; // Import
+import PropertyDetails from './pages/PropertyDetails'; // Import
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/property/:id" element={<PropertyDetails />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/create-listing" element={<CreateListing />} />
           <Route path="/admin" element={<AdminDashboard />} />
