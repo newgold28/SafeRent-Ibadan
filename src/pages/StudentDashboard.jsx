@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
-import ListingCard from '../components/ListingCard';
+import PropertyCard from '../components/PropertyCard'; // Use PropertyCard
 
 const StudentDashboard = () => {
     const { user } = useAuth();
@@ -46,7 +46,7 @@ const StudentDashboard = () => {
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         {unlockedListings.map(listing => (
-                            <ListingCard
+                            <PropertyCard
                                 key={listing.id}
                                 {...listing}
                                 image={listing.image_url}
