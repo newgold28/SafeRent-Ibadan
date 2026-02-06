@@ -1,36 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Hero = () => {
+    const [search, setSearch] = useState('');
+
     return (
-        <div className="relative pt-32 pb-20 sm:pt-40 sm:pb-24 overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-                <h1 className="text-4xl sm:text-6xl font-extrabold text-slate-900 tracking-tight mb-8">
-                    Find your next hostel <br className="hidden sm:block" />
-                    <span className="bg-gradient-to-r from-orange-500 to-amber-600 bg-clip-text text-transparent">near campus</span>
-                </h1>
-                <p className="mt-4 text-xl text-slate-600 max-w-2xl mx-auto mb-10">
-                    Secure, affordable, and verified student housing. Browse hundreds of hostels close to your university.
-                </p>
-                <div className="flex justify-center max-w-xl mx-auto">
-                    <div className="w-full relative flex items-center">
-                        <input
-                            type="text"
-                            placeholder="Search by school or location..."
-                            className="w-full px-6 py-4 rounded-2xl border border-slate-200 shadow-xl shadow-slate-200/40 focus:outline-none focus:ring-2 focus:ring-orange-500/50 text-lg placeholder:text-slate-400"
-                        />
-                        <button className="absolute right-2 bg-orange-500 hover:bg-orange-600 text-white p-3 rounded-xl transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                            </svg>
-                        </button>
-                    </div>
+        <div className="relative bg-white overflow-hidden">
+            {/* Background Pattern */}
+            <div className="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-orange-50 to-white hidden lg:block"></div>
+
+            <div className="max-w-7xl mx-auto">
+                <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+
+                    <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+                        <div className="sm:text-center lg:text-left">
+                            <h1 className="text-4xl tracking-tight font-extrabold text-slate-900 sm:text-5xl md:text-6xl">
+                                <span className="block xl:inline">Find your next hostel</span>{' '}
+                                <span className="block text-orange-500 xl:inline">without the stress.</span>
+                            </h1>
+                            <p className="mt-3 text-base text-slate-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                                SafeRent connects students in Ibadan with verified landlords. No agents, no scams, just secure housing near your campus.
+                            </p>
+                            <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                                <div className="rounded-md shadow">
+                                    <a href="#listings" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-orange-600 hover:bg-orange-700 md:py-4 md:text-lg transition-all shadow-lg shadow-orange-500/30">
+                                        Browse Hostels
+                                    </a>
+                                </div>
+                                <div className="mt-3 sm:mt-0 sm:ml-3">
+                                    <a href="/signup" className="w-full flex items-center justify-center px-8 py-3 border border-slate-200 text-base font-medium rounded-xl text-slate-700 bg-white hover:bg-slate-50 md:py-4 md:text-lg transition-all">
+                                        List a Property
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
                 </div>
             </div>
 
-            {/* Background decoration */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full z-0 pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
-                <div className="absolute top-0 right-1/4 w-96 h-96 bg-amber-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+            <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+                <img
+                    className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
+                    src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+                    alt="Modern student hostel"
+                />
             </div>
         </div>
     );
