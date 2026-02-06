@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom';
 
 const PropertyCard = ({ id, image, price, location, title, type = "Hostel", landlord_phone, isUnlocked, onUnlock }) => {
@@ -20,10 +19,12 @@ const PropertyCard = ({ id, image, price, location, title, type = "Hostel", land
                 <div className="absolute bottom-4 left-4 text-white">
                     <p className="font-bold text-lg">₦{price.toLocaleString()}<span className="text-sm font-normal opacity-90">/yr</span></p>
                 </div>
-            </div>
+            </Link>
 
             <div className="p-5 flex flex-col flex-grow">
-                <h3 className="text-lg font-bold text-slate-900 mb-1 truncate">{title}</h3>
+                <Link to={`/property/${id}`} className="block">
+                    <h3 className="text-lg font-bold text-slate-900 mb-1 truncate hover:text-orange-600 transition-colors">{title}</h3>
+                </Link>
                 <div className="flex items-center text-slate-500 text-sm mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-1">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
@@ -53,7 +54,7 @@ const PropertyCard = ({ id, image, price, location, title, type = "Hostel", land
                     )}
                 </div>
             </div>
-        </div >
+        </div>
     );
 };
 
