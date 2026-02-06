@@ -40,9 +40,15 @@ const LandlordDashboard = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
                 <div className="flex justify-between items-center mb-8">
                     <h1 className="text-3xl font-bold text-slate-900">Landlord Dashboard</h1>
-                    <Link to="/create-listing" className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-xl font-bold transition-colors shadow-lg shadow-orange-500/30">
-                        + Post New Property
-                    </Link>
+                    <div className="flex gap-4">
+                        <Link to="/profile" className="px-6 py-3 border border-slate-200 text-slate-600 rounded-xl font-bold hover:bg-slate-50 transition-colors flex items-center gap-2">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                            My Profile
+                        </Link>
+                        <Link to="/create-listing" className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-xl font-bold transition-colors shadow-lg shadow-orange-500/30">
+                            + Post New Property
+                        </Link>
+                    </div>
                 </div>
 
                 {loading ? (
@@ -85,8 +91,8 @@ const LandlordDashboard = () => {
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${listing.status === 'approved' ? 'bg-green-100 text-green-800' :
-                                                    listing.status === 'rejected' ? 'bg-red-100 text-red-800' :
-                                                        'bg-yellow-100 text-yellow-800'
+                                                listing.status === 'rejected' ? 'bg-red-100 text-red-800' :
+                                                    'bg-yellow-100 text-yellow-800'
                                                 }`}>
                                                 {listing.status.charAt(0).toUpperCase() + listing.status.slice(1)}
                                             </span>

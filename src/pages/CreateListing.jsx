@@ -28,6 +28,12 @@ const CreateListing = () => {
         const fetchUniversities = async () => {
             const { data } = await supabase.from('universities').select('*');
             if (data) setUniversities(data);
+
+            // Fetch Profile to pre-fill phone
+            const { data: profile } = await supabase.from('profiles').select('phone_number').eq('id', user.id).maybeSingle();
+            if (profile?.phone_number) {
+                setFormData(prev => ({ ...prev, landlord_phone: profile.phone_number }));
+            }
         };
         fetchUniversities();
     }, [user, navigate]);

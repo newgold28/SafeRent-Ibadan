@@ -26,6 +26,10 @@ function App() {
           <Route path="/dashboard/landlord" element={<LandlordDashboard />} />
           <Route path="/dashboard/student" element={<StudentDashboard />} />
           <Route path="/dashboard/profile" element={<StudentProfile />} />
+          {/* Typos & Aliases */}
+          <Route path="/profile" element={<StudentProfile />} />
+          <Route path="/student/dashboard" element={<StudentDashboard />} />
+          <Route path="/dashboard" element={<StudentDashboard />} />
         </Routes>
       </Router>
     </AuthProvider>

@@ -100,23 +100,30 @@ const StudentProfile = () => {
                                 onChange={(e) => setProfile({ ...profile, phone_number: e.target.value })}
                                 placeholder="080 1234 5678"
                             />
-                            <p className="mt-1 text-xs text-slate-400">Landlords use this to contact you if you provide it.</p>
+                            <p className="mt-1 text-xs text-slate-400">
+                                {user?.user_metadata?.role === 'landlord'
+                                    ? "This will be shown as your primary contact on property listings."
+                                    : "Landlords use this to contact you if you provide it."
+                                }
+                            </p>
                         </div>
 
-                        {/* University */}
-                        <div>
-                            <label className="block text-sm font-semibold text-slate-700 mb-2">Your University</label>
-                            <select
-                                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-orange-500 transition-all bg-white"
-                                value={profile.university_id}
-                                onChange={(e) => setProfile({ ...profile, university_id: e.target.value })}
-                            >
-                                <option value="">Select your university</option>
-                                {universities.map(uni => (
-                                    <option key={uni.id} value={uni.id}>{uni.name}</option>
-                                ))}
-                            </select>
-                        </div>
+                        {/* University - Only for students */}
+                        {user?.user_metadata?.role !== 'landlord' && (
+                            <div>
+                                <label className="block text-sm font-semibold text-slate-700 mb-2">Your University</label>
+                                <select
+                                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-orange-500 transition-all bg-white"
+                                    value={profile.university_id}
+                                    onChange={(e) => setProfile({ ...profile, university_id: e.target.value })}
+                                >
+                                    <option value="">Select your university</option>
+                                    {universities.map(uni => (
+                                        <option key={uni.id} value={uni.id}>{uni.name}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        )}
 
                         <button
                             type="submit"
