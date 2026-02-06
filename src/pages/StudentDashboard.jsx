@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
+import { useNavigate } from 'react-router-dom';
 import PropertyCard from '../components/PropertyCard';
 
 const StudentDashboard = () => {
     const { user } = useAuth();
+    const navigate = useNavigate();
     const [unlockedListings, setUnlockedListings] = useState([]);
     const [savedListings, setSavedListings] = useState([]);
     const [loading, setLoading] = useState(true);

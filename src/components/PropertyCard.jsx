@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const PropertyCard = ({ id, image, price, location, title, type = "Hostel", landlord_phone, isUnlocked, onUnlock, isSaved, onSave }) => {
+const PropertyCard = ({ id, image, price, location, title, type = "Hostel", landlord_phone, isUnlocked = false, onUnlock, isSaved = false, onSave }) => {
     return (
         <div className="group bg-white rounded-2xl border border-slate-100 overflow-hidden hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full relative">
             {/* Save Button */}
