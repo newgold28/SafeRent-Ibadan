@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 255 115 0; /* Orange/Gold vibe for student energy */
+    --color-secondary: 16 185 129; /* Emerald */
+  }
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+body {
+    @apply bg-slate-50 text-slate-900;
+}
