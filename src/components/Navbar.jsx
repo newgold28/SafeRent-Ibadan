@@ -44,6 +44,7 @@ const Navbar = () => {
 
                     <div className="hidden md:flex items-center space-x-6">
                         <Link to="/" className="text-slate-600 hover:text-slate-900 font-medium transition-colors">Find Homes</Link>
+                        <Link to="/roommates" className="text-slate-600 hover:text-slate-900 font-medium transition-colors">Find Roommates</Link>
 
                         {/* Conditional Links based on Role */}
                         {user && userRole === 'landlord' && (

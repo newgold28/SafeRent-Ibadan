@@ -10,6 +10,7 @@ import LandlordDashboard from './pages/LandlordDashboard';
 import StudentDashboard from './pages/StudentDashboard';
 import PropertyDetails from './pages/PropertyDetails';
 import StudentProfile from './pages/StudentProfile';
+import RoommateFinder from './pages/RoommateFinder';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/property/:id" element={<PropertyDetails />} />
+          <Route path="/roommates" element={<RoommateFinder />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/create-listing" element={<CreateListing />} />
           <Route path="/admin" element={<AdminDashboard />} />

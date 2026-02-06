@@ -47,7 +47,7 @@ const Home = () => {
             setLoading(true);
             let query = supabase
                 .from('properties')
-                .select('*, universities(name)')
+                .select('*, universities(name), reviews(rating)')
                 .eq('status', 'approved') // Only approved
                 .order('is_featured', { ascending: false })
                 .order('created_at', { ascending: false });
@@ -213,23 +213,31 @@ const Home = () => {
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {listings.map((listing) => (
-                            <PropertyCard
-                                key={listing.id}
-                                id={listing.id}
-                                title={listing.title}
-                                price={listing.price}
-                                location={listing.location}
-                                image={listing.image_url}
-                                type={listing.category}
-                                landlord_phone={listing.landlord_phone}
-                                isUnlocked={unlockedListings.includes(listing.id) || (user && user.id === listing.owner_id)}
-                                isSaved={savedListings.includes(listing.id)}
-                                is_featured={listing.is_featured}
-                                onUnlock={handleUnlockClick}
-                                onSave={handleSaveClick}
-                            />
-                        ))}
+                        {listings.map((listing) => {
+                            const avgRating = listing.reviews?.length > 0
+                                ? (listing.reviews.reduce((acc, r) => acc + r.rating, 0) / listing.reviews.length).toFixed(1)
+                                : null;
+
+                            return (
+                                <PropertyCard
+                                    key={listing.id}
+                                    id={listing.id}
+                                    title={listing.title}
+                                    price={listing.price}
+                                    location={listing.location}
+                                    image={listing.image_url}
+                                    type={listing.category}
+                                    landlord_phone={listing.landlord_phone}
+                                    isUnlocked={unlockedListings.includes(listing.id) || (user && user.id === listing.owner_id)}
+                                    isSaved={savedListings.includes(listing.id)}
+                                    is_featured={listing.is_featured}
+                                    rating={avgRating}
+                                    reviewCount={listing.reviews?.length || 0}
+                                    onUnlock={handleUnlockClick}
+                                    onSave={handleSaveClick}
+                                />
+                            );
+                        })}
                     </div>
                 )}
             </main>

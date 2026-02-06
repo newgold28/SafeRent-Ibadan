@@ -16,8 +16,14 @@ const SignUp = () => {
         setLoading(true);
         setError(null);
         try {
-            // Pass role as metadata
-            const { error } = await signUp(email, password, { role });
+            // Pass email, password, and metadata correctly
+            const { error } = await signUp({
+                email,
+                password,
+                options: {
+                    data: { full_name: email.split('@')[0], role }
+                }
+            });
             if (error) throw error;
             navigate('/');
         } catch (err) {

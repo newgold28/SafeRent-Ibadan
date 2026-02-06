@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabaseClient';
 import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
 import PaymentModal from '../components/PaymentModal';
+import ReviewSection from '../components/ReviewSection';
 
 const PropertyDetails = () => {
     const { id } = useParams();
@@ -13,41 +14,47 @@ const PropertyDetails = () => {
     const [loading, setLoading] = useState(true);
     const [isUnlocked, setIsUnlocked] = useState(false);
     const [showPayment, setShowPayment] = useState(false);
+    const [reviews, setReviews] = useState([]);
+
+    const fetchProperty = async () => {
+        try {
+            // Fetch property details
+            const { data, error } = await supabase
+                .from('properties')
+                .select('*, universities(name)')
+                .eq('id', id)
+                .single();
+
+            if (error) throw error;
+            setProperty(data);
+
+            // Check unlock status
+            if (user) {
+                if (data.owner_id === user.id) {
+                    setIsUnlocked(true);
+                } else {
+                    const { data: unlockedData } = await supabase
+                        .from('unlocked_listings')
+                        .select('*')
+                        .eq('user_id', user.id)
+                        .eq('property_id', id)
+                        .single();
+                    if (unlockedData) setIsUnlocked(true);
+                }
+            }
+
+            // Fetch ratings for average
+            const { data: reviewData } = await supabase.from('reviews').select('rating').eq('property_id', id);
+            if (reviewData) setReviews(reviewData);
+
+        } catch (err) {
+            // Error handled gracefully
+        } finally {
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const fetchProperty = async () => {
-            try {
-                // Fetch property details
-                const { data, error } = await supabase
-                    .from('properties')
-                    .select('*, universities(name)')
-                    .eq('id', id)
-                    .single();
-
-                if (error) throw error;
-                setProperty(data);
-
-                // Check unlock status
-                if (user) {
-                    if (data.owner_id === user.id) {
-                        setIsUnlocked(true);
-                    } else {
-                        const { data: unlockedData } = await supabase
-                            .from('unlocked_listings')
-                            .select('*')
-                            .eq('user_id', user.id)
-                            .eq('property_id', id)
-                            .single();
-                        if (unlockedData) setIsUnlocked(true);
-                    }
-                }
-            } catch (err) {
-                console.error("Error fetching property:", err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
         fetchProperty();
     }, [id, user]);
 
@@ -61,6 +68,9 @@ const PropertyDetails = () => {
     if (!property) return <div className="text-center py-20">Property not found.</div>;
 
     const amenitiesList = property.amenities ? property.amenities.split(',') : [];
+    const avgRating = reviews.length > 0
+        ? (reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length).toFixed(1)
+        : null;
 
     return (
         <div className="min-h-screen bg-slate-50">
@@ -90,6 +100,11 @@ const PropertyDetails = () => {
                                     <span className="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-bold rounded-full uppercase tracking-wide">
                                         {property.category}
                                     </span>
+                                    {avgRating && (
+                                        <span className="flex items-center gap-1 text-orange-600 font-bold text-sm">
+                                            ★ {avgRating} <span className="text-slate-400 text-xs font-medium">({reviews.length} reviews)</span>
+                                        </span>
+                                    )}
                                     <span className="text-slate-500 text-sm font-medium flex items-center">
                                         <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                         {property.location}
@@ -173,6 +188,9 @@ const PropertyDetails = () => {
                         </div>
                     </div>
                 </div>
+
+                {/* Reviews Section */}
+                <ReviewSection propertyId={id} onReviewSubmitted={fetchProperty} />
             </main>
 
             {showPayment && (

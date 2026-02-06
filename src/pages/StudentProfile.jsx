@@ -12,6 +12,9 @@ const StudentProfile = () => {
         full_name: '',
         phone_number: '',
         university_id: '',
+        is_looking_for_roommate: false,
+        roommate_bio: '',
+        budget_range: '',
     });
 
     useEffect(() => {
@@ -34,6 +37,9 @@ const StudentProfile = () => {
                     full_name: data.full_name || '',
                     phone_number: data.phone_number || '',
                     university_id: data.university_id || '',
+                    is_looking_for_roommate: data.is_looking_for_roommate || false,
+                    roommate_bio: data.roommate_bio || '',
+                    budget_range: data.budget_range || '',
                 });
             } else if (!error) {
                 // If profile doesn't exist yet but user is logged in
@@ -110,19 +116,65 @@ const StudentProfile = () => {
 
                         {/* University - Only for students */}
                         {user?.user_metadata?.role !== 'landlord' && (
-                            <div>
-                                <label className="block text-sm font-semibold text-slate-700 mb-2">Your University</label>
-                                <select
-                                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-orange-500 transition-all bg-white"
-                                    value={profile.university_id}
-                                    onChange={(e) => setProfile({ ...profile, university_id: e.target.value })}
-                                >
-                                    <option value="">Select your university</option>
-                                    {universities.map(uni => (
-                                        <option key={uni.id} value={uni.id}>{uni.name}</option>
-                                    ))}
-                                </select>
-                            </div>
+                            <>
+                                <div>
+                                    <label className="block text-sm font-semibold text-slate-700 mb-2">Your University</label>
+                                    <select
+                                        className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-orange-500 transition-all bg-white"
+                                        value={profile.university_id}
+                                        onChange={(e) => setProfile({ ...profile, university_id: e.target.value })}
+                                    >
+                                        <option value="">Select your university</option>
+                                        {universities.map(uni => (
+                                            <option key={uni.id} value={uni.id}>{uni.name}</option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                <div className="pt-6 border-t border-slate-100">
+                                    <h3 className="text-lg font-bold text-slate-900 mb-4">Roommate Finder Status</h3>
+
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <button
+                                            type="button"
+                                            onClick={() => setProfile({ ...profile, is_looking_for_roommate: !profile.is_looking_for_roommate })}
+                                            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 ${profile.is_looking_for_roommate ? 'bg-orange-600' : 'bg-slate-200'}`}
+                                        >
+                                            <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${profile.is_looking_for_roommate ? 'translate-x-6' : 'translate-x-1'}`} />
+                                        </button>
+                                        <span className="text-sm font-medium text-slate-700">Looking for a Roommate</span>
+                                    </div>
+
+                                    {profile.is_looking_for_roommate && (
+                                        <div className="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                                            <div>
+                                                <label className="block text-sm font-semibold text-slate-700 mb-2">My Budget (Yearly)</label>
+                                                <select
+                                                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-orange-500 transition-all bg-white"
+                                                    value={profile.budget_range}
+                                                    onChange={(e) => setProfile({ ...profile, budget_range: e.target.value })}
+                                                >
+                                                    <option value="">Select a range</option>
+                                                    <option value="Under ₦100k">Under ₦100k</option>
+                                                    <option value="₦100k - ₦300k">₦100k - ₦300k</option>
+                                                    <option value="₦300k - ₦500k">₦300k - ₦500k</option>
+                                                    <option value="Above ₦500k">Above ₦500k</option>
+                                                </select>
+                                            </div>
+
+                                            <div>
+                                                <label className="block text-sm font-semibold text-slate-700 mb-2">Short Bio</label>
+                                                <textarea
+                                                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-orange-500 transition-all h-24 resize-none"
+                                                    placeholder="E.g. I'm a clean and quiet 200L student looking for a shared apartment near UI. I'm fine with pets."
+                                                    value={profile.roommate_bio}
+                                                    onChange={(e) => setProfile({ ...profile, roommate_bio: e.target.value })}
+                                                />
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            </>
                         )}
 
                         <button

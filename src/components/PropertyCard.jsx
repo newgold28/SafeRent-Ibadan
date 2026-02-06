@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const PropertyCard = ({ id, image, price, location, title, type = "Hostel", landlord_phone, isUnlocked = false, onUnlock, isSaved = false, onSave, is_featured = false }) => {
+const PropertyCard = ({ id, image, price, location, title, type = "Hostel", landlord_phone, isUnlocked = false, onUnlock, isSaved = false, onSave, is_featured = false, rating, reviewCount }) => {
     return (
         <div className={`group bg-white rounded-2xl border overflow-hidden hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full relative ${is_featured ? 'border-orange-200 ring-1 ring-orange-100' : 'border-slate-100'}`}>
             {/* Featured Badge */}
@@ -43,9 +43,26 @@ const PropertyCard = ({ id, image, price, location, title, type = "Hostel", land
             </Link>
 
             <div className="p-5 flex flex-col flex-grow">
-                <Link to={`/property/${id}`} className="block">
-                    <h3 className="text-lg font-bold text-slate-900 mb-1 truncate hover:text-orange-600 transition-colors">{title}</h3>
-                </Link>
+                <div className="mb-1">
+                    <Link to={`/property/${id}`} className="block">
+                        <h3 className="text-lg font-bold text-slate-900 mb-0.5 truncate hover:text-orange-600 transition-colors">{title}</h3>
+                    </Link>
+
+                    {/* Rating Display */}
+                    <div className="flex items-center gap-2">
+                        <div className="flex text-orange-500 text-xs">
+                            {rating ? (
+                                <>
+                                    <span className="font-bold mr-1">★ {rating}</span>
+                                    <span className="text-slate-400 font-medium">({reviewCount})</span>
+                                </>
+                            ) : (
+                                <span className="text-slate-400 text-[10px] font-bold uppercase tracking-wider">New Listing</span>
+                            )}
+                        </div>
+                    </div>
+                </div>
+
                 <div className="flex items-center text-slate-500 text-sm mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-1">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
