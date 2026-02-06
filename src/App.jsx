@@ -6,8 +6,10 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import CreateListing from './pages/CreateListing';
 import AdminDashboard from './pages/AdminDashboard';
-import LandlordDashboard from './pages/LandlordDashboard'; // Import
-import PropertyDetails from './pages/PropertyDetails'; // Import
+import LandlordDashboard from './pages/LandlordDashboard';
+import StudentDashboard from './pages/StudentDashboard';
+import PropertyDetails from './pages/PropertyDetails';
+import StudentProfile from './pages/StudentProfile';
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
           {/* New Dashboard Routes */}
           <Route path="/dashboard/landlord" element={<LandlordDashboard />} />
           <Route path="/dashboard/student" element={<StudentDashboard />} />
+          <Route path="/dashboard/profile" element={<StudentProfile />} />
         </Routes>
       </Router>
     </AuthProvider>

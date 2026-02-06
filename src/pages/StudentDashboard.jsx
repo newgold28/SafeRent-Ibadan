@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import PropertyCard from '../components/PropertyCard';
 
 const StudentDashboard = () => {
@@ -51,7 +51,13 @@ const StudentDashboard = () => {
         <div className="min-h-screen bg-slate-50">
             <Navbar />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <h1 className="text-3xl font-bold text-slate-900 mb-8">My Dashboard</h1>
+                <div className="flex justify-between items-center mb-8">
+                    <h1 className="text-3xl font-bold text-slate-900">My Dashboard</h1>
+                    <Link to="/dashboard/profile" className="text-orange-600 hover:text-orange-700 font-semibold flex items-center gap-1 group">
+                        Manage Profile
+                        <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                    </Link>
+                </div>
 
                 {/* Tabs */}
                 <div className="flex space-x-4 mb-8 border-b border-slate-200">
