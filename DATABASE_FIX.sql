@@ -124,12 +124,18 @@ create policy "Users can update their own properties."
   on public.properties for update
   using ( auth.uid() = owner_id );
 
--- 9. Seed Universities
 insert into public.universities (name, short_name, location) values
   ('University of Ibadan', 'UI', 'Ibadan'),
   ('Lead City University', 'LCU', 'Ibadan'),
   ('The Polytechnic, Ibadan', 'Poly Ibadan', 'Ibadan'),
-  ('Technical University', 'Tech-U', 'Ibadan')
+  ('Technical University', 'Tech-U', 'Ibadan'),
+  ('Koladaisi University', 'KDU', 'Ibadan'),
+  ('Precious Cornerstone University', 'PCU', 'Ibadan'),
+  ('Dominion University', 'Dominion', 'Ibadan'),
+  ('Emmanuel Alayande College of Education', 'EACOED', 'Oyo/Ibadan'),
+  ('Federal College of Education (Special)', 'FCE Special', 'Oyo/Ibadan'),
+  ('Federal School of Statistics', 'FSS Ibadan', 'Ibadan'),
+  ('Federal Cooperative College', 'FCC Ibadan', 'Ibadan')
 on conflict (name) do nothing;
 
 -- 10. Trigger for Profiles

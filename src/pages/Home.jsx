@@ -131,8 +131,76 @@ const Home = () => {
             <Navbar />
             <Hero />
 
-            <main id="listings" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            {/* Why SafeRent Section */}
+            <section className="bg-white py-20 border-b border-slate-100">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Why Students Trust SafeRent</h2>
+                        <p className="text-slate-500 text-lg max-w-2xl mx-auto">We're changing how student housing works in Ibadan, making it safer, cheaper, and faster.</p>
+                    </div>
 
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                        <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 hover:shadow-xl transition-all">
+                            <div className="w-12 h-12 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center mb-6">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04kM12 20.944a11.955 11.955 0 01-8.618-3.04A12.02 12.02 0 013 9c0 behavior: 'smooth' -5.591 3.824-10.29 9-11.622 5.176 1.332 9 6.03 9 11.622 0 behavior: 'smooth' 1.04-.233 2.008-.682 2.944a11.952 11.952 0 01-6.882 9.506z"></path></svg>
+                            </div>
+                            <h3 className="text-xl font-bold text-slate-900 mb-3">Verified Listings</h3>
+                            <p className="text-slate-600">Every property is manually checked by our team. No fake photos or non-existent houses.</p>
+                        </div>
+
+                        <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 hover:shadow-xl transition-all">
+                            <div className="w-12 h-12 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center mb-6">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2 behavior: 'smooth' m0 2v.466 behavior: 'smooth' m2.52 1.159c.029.01.058.022.087.036 behavior: 'smooth' M12 6c1.657 0 3-.895 3-2s-1.343-2-3-2-3 .895-3 2 1.343 2 3 2 behavior: 'smooth' m0-2V1 behavior: 'smooth' m-2.52 1.159c-.029-.01-.058-.022-.087-.036behavior: 'smooth' "></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 22V12m0 0l-4 4m4-4l4 4m-4-12V2behavior: 'smooth' "></path></svg>
+                            </div>
+                            <h3 className="text-xl font-bold text-slate-900 mb-3">Zero Agent Fees</h3>
+                            <p className="text-slate-600">Stop paying ₦50,000 to "agents" just to see a room. Only pay ₦1,000 to unlock direct landlord contact.</p>
+                        </div>
+
+                        <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 hover:shadow-xl transition-all">
+                            <div className="w-12 h-12 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center mb-6">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7behavior: 'smooth' m10 0v-2c0-.656-.126-1.283-.356-1.857behavior: 'smooth' M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857behavior: 'smooth' m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                            </div>
+                            <h3 className="text-xl font-bold text-slate-900 mb-3">Roommate Finder</h3>
+                            <p className="text-slate-600">Find other students in your school to split the rent with. Rent a flat and share costs easily.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* How it Works Section */}
+            <section className="bg-slate-50 py-20">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">How to Get Started</h2>
+                        <p className="text-slate-500 text-lg">Four simple steps to your next campus home.</p>
+                    </div>
+
+                    <div className="relative">
+                        {/* Connecting Line (Desktop) */}
+                        <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-200 -translate-y-1/2"></div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+                            {[
+                                { step: "1", title: "Search", desc: "Filter by your university and budget." },
+                                { step: "2", title: "Preview", desc: "Check photos, ratings, and amenities." },
+                                { step: "3", title: "Unlock", desc: "Pay a tiny ₦1,000 fee to see the landlord number." },
+                                { step: "4", title: "Connect", desc: "Call the landlord and book your room!" }
+                            ].map((item, idx) => (
+                                <div key={idx} className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 text-center">
+                                    <div className="w-10 h-10 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold mx-auto mb-6 shadow-lg shadow-orange-500/20">
+                                        {item.step}
+                                    </div>
+                                    <h4 className="font-bold text-slate-900 mb-2">{item.title}</h4>
+                                    <p className="text-sm text-slate-500">{item.desc}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Listings Section */}
+            <main id="listings" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 {/* Search & Filters */}
                 <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm mb-12">
                     <h2 className="text-xl font-bold text-slate-900 mb-6">Find your perfect place</h2>
@@ -242,15 +310,17 @@ const Home = () => {
                 )}
             </main>
 
-            {selectedPropertyForPayment && (
-                <PaymentModal
-                    propertyId={selectedPropertyForPayment}
-                    amount={1000}
-                    onClose={() => setSelectedPropertyForPayment(null)}
-                    onSuccess={handlePaymentSuccess}
-                />
-            )}
-        </div>
+            {
+                selectedPropertyForPayment && (
+                    <PaymentModal
+                        propertyId={selectedPropertyForPayment}
+                        amount={1000}
+                        onClose={() => setSelectedPropertyForPayment(null)}
+                        onSuccess={handlePaymentSuccess}
+                    />
+                )
+            }
+        </div >
     );
 };
 
