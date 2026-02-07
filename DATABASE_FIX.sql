@@ -127,15 +127,19 @@ create policy "Users can update their own properties."
 insert into public.universities (name, short_name, location) values
   ('University of Ibadan', 'UI', 'Ibadan'),
   ('Lead City University', 'LCU', 'Ibadan'),
-  ('The Polytechnic, Ibadan', 'Poly Ibadan', 'Ibadan'),
   ('Technical University', 'Tech-U', 'Ibadan'),
+  ('The Polytechnic, Ibadan', 'Poly Ibadan', 'Ibadan'),
   ('Koladaisi University', 'KDU', 'Ibadan'),
   ('Precious Cornerstone University', 'PCU', 'Ibadan'),
-  ('Dominion University', 'Dominion', 'Ibadan'),
-  ('Emmanuel Alayande College of Education', 'EACOED', 'Oyo/Ibadan'),
-  ('Federal College of Education (Special)', 'FCE Special', 'Oyo/Ibadan'),
+  ('Dominican University', 'Dominican', 'Ibadan'),
+  ('Ibadan City Polytechnic', 'Ibadan City Poly', 'Ibadan'),
+  ('Tower Polytechnic', 'Tower Poly', 'Ibadan'),
+  ('Federal College of Education (Special)', 'FCE Special', 'Ibadan/Oyo'),
   ('Federal School of Statistics', 'FSS Ibadan', 'Ibadan'),
-  ('Federal Cooperative College', 'FCC Ibadan', 'Ibadan')
+  ('Federal Cooperative College', 'FCC Ibadan', 'Ibadan'),
+  ('Federal College of Animal Health', 'FCAHPT', 'Ibadan'),
+  ('SQI College of ICT', 'SQI', 'Ibadan'),
+  ('Emmanuel Alayande University', 'EAU', 'Ibadan/Oyo')
 on conflict (name) do nothing;
 
 -- 10. Trigger for Profiles

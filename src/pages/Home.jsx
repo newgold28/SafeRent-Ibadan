@@ -6,6 +6,24 @@ import Hero from '../components/Hero';
 import PropertyCard from '../components/PropertyCard';
 import PaymentModal from '../components/PaymentModal';
 
+const FALLBACK_UNIVERSITIES = [
+    { id: '1', name: 'University of Ibadan (UI)' },
+    { id: '2', name: 'Lead City University (LCU)' },
+    { id: '3', name: 'The Polytechnic, Ibadan (Poly)' },
+    { id: '4', name: 'Technical University (Tech-U)' },
+    { id: '5', name: 'Koladaisi University (KDU)' },
+    { id: '6', name: 'Precious Cornerstone University (PCU)' },
+    { id: '7', name: 'Dominican University' },
+    { id: '8', name: 'Ibadan City Polytechnic' },
+    { id: '9', name: 'Tower Polytechnic' },
+    { id: '10', name: 'Federal College of Education (FCE)' },
+    { id: '11', name: 'Federal School of Statistics (FSS)' },
+    { id: '12', name: 'Federal Cooperative College (FCC)' },
+    { id: '13', name: 'Federal College of Animal Health' },
+    { id: '14', name: 'SQI College of ICT' },
+    { id: '15', name: 'Emmanuel Alayande University' }
+];
+
 const Home = () => {
     const { user } = useAuth();
     const [listings, setListings] = useState([]);
@@ -23,7 +41,12 @@ const Home = () => {
 
     const fetchUniversities = async () => {
         const { data } = await supabase.from('universities').select('*');
-        if (data) setUniversities(data);
+        if (data && data.length > 0) {
+            setUniversities(data);
+        } else {
+            // Fallback to hardcoded list if DB is empty or script hasn't been run
+            setUniversities(FALLBACK_UNIVERSITIES);
+        }
     };
 
     const fetchUserData = async () => {
