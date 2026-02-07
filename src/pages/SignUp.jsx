@@ -44,20 +44,27 @@ const SignUp = () => {
                 {error && <div className="bg-red-50 text-red-500 p-3 rounded-md text-sm text-center">{error}</div>}
 
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-                    <div className="flex gap-4 mb-6">
+                    <div className="grid grid-cols-3 gap-3 mb-6">
                         <button
                             type="button"
                             onClick={() => setRole('student')}
-                            className={`flex-1 py-3 px-4 rounded-xl border-2 font-medium transition-all ${role === 'student' ? 'border-orange-500 bg-orange-50 text-orange-700' : 'border-slate-200 text-slate-500 hover:border-slate-300'}`}
+                            className={`py-3 px-2 rounded-xl border-2 font-medium text-xs transition-all ${role === 'student' ? 'border-orange-500 bg-orange-50 text-orange-700' : 'border-slate-200 text-slate-500 hover:border-slate-300'}`}
                         >
                             Student
                         </button>
                         <button
                             type="button"
                             onClick={() => setRole('landlord')}
-                            className={`flex-1 py-3 px-4 rounded-xl border-2 font-medium transition-all ${role === 'landlord' ? 'border-orange-500 bg-orange-50 text-orange-700' : 'border-slate-200 text-slate-500 hover:border-slate-300'}`}
+                            className={`py-3 px-2 rounded-xl border-2 font-medium text-xs transition-all ${role === 'landlord' ? 'border-orange-500 bg-orange-50 text-orange-700' : 'border-slate-200 text-slate-500 hover:border-slate-300'}`}
                         >
-                            Landlord / Agent
+                            Landlord
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => setRole('agent')}
+                            className={`py-3 px-2 rounded-xl border-2 font-medium text-xs transition-all ${role === 'agent' ? 'border-orange-500 bg-orange-50 text-orange-700' : 'border-slate-200 text-slate-500 hover:border-slate-300'}`}
+                        >
+                            Agent
                         </button>
                     </div>
 

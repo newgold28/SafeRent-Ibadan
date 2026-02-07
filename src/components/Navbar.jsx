@@ -47,7 +47,7 @@ const Navbar = () => {
                         <Link to="/roommates" className="text-slate-600 hover:text-slate-900 font-medium transition-colors">Find Roommates</Link>
 
                         {/* Conditional Links based on Role */}
-                        {user && userRole === 'landlord' && (
+                        {user && (userRole === 'landlord' || userRole === 'agent') && (
                             <Link to="/dashboard/landlord" className="text-slate-600 hover:text-slate-900 font-medium transition-colors">Dashboard</Link>
                         )}
                         {user && userRole === 'student' && (

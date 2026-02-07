@@ -39,7 +39,7 @@ const LandlordDashboard = () => {
             <Navbar />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
                 <div className="flex justify-between items-center mb-8">
-                    <h1 className="text-3xl font-bold text-slate-900">Landlord Dashboard</h1>
+                    <h1 className="text-3xl font-bold text-slate-900">Management Dashboard</h1>
                     <div className="flex gap-4">
                         <Link to="/profile" className="px-6 py-3 border border-slate-200 text-slate-600 rounded-xl font-bold hover:bg-slate-50 transition-colors flex items-center gap-2">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
@@ -59,7 +59,7 @@ const LandlordDashboard = () => {
                 ) : listings.length === 0 ? (
                     <div className="text-center py-20 bg-white rounded-2xl border border-slate-100">
                         <p className="text-slate-500 text-lg">You haven't listed any properties yet.</p>
-                        <p className="text-slate-400 text-sm mt-2">Start earning by posting your first hostel!</p>
+                        <p className="text-slate-400 text-sm mt-2">Start earning by posting your first property!</p>
                     </div>
                 ) : (
                     <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">

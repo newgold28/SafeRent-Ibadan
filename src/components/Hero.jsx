@@ -25,7 +25,7 @@ const Hero = () => {
                         </h1>
                         <p className="mt-6 text-base text-slate-500 sm:text-xl lg:text-lg xl:text-xl leading-relaxed">
                             Join 2,000+ students in Ibadan who found their perfect hostels via SafeRent.
-                            Verified properties, direct landlord contacts, and zero agent stress.
+                            Verified properties, direct owner contacts, and zero hidden fees.
                         </p>
 
                         <div className="mt-10 sm:flex sm:justify-center lg:justify-start gap-4">

@@ -15,6 +15,8 @@ const StudentProfile = () => {
         is_looking_for_roommate: false,
         roommate_bio: '',
         budget_range: '',
+        agency_name: '',
+        role: ''
     });
 
     useEffect(() => {
@@ -40,10 +42,11 @@ const StudentProfile = () => {
                     is_looking_for_roommate: data.is_looking_for_roommate || false,
                     roommate_bio: data.roommate_bio || '',
                     budget_range: data.budget_range || '',
+                    agency_name: data.agency_name || '',
+                    role: data.role || ''
                 });
             } else if (!error) {
-                // If profile doesn't exist yet but user is logged in
-                // (Trigger should have created it, but good to handle)
+                // Handle new user with no profile yet
             }
             setLoading(false);
         };
@@ -107,15 +110,29 @@ const StudentProfile = () => {
                                 placeholder="080 1234 5678"
                             />
                             <p className="mt-1 text-xs text-slate-400">
-                                {user?.user_metadata?.role === 'landlord'
+                                {profile.role !== 'student'
                                     ? "This will be shown as your primary contact on property listings."
-                                    : "Landlords use this to contact you if you provide it."
+                                    : "Landlords/Agents use this to contact you if you provide it."
                                 }
                             </p>
                         </div>
 
+                        {/* Agency Name - Only for Agents */}
+                        {profile.role === 'agent' && (
+                            <div>
+                                <label className="block text-sm font-semibold text-slate-700 mb-2">Agency name</label>
+                                <input
+                                    type="text"
+                                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-orange-500 transition-all"
+                                    value={profile.agency_name}
+                                    onChange={(e) => setProfile({ ...profile, agency_name: e.target.value })}
+                                    placeholder="e.g. Reliable Homes Ltd"
+                                />
+                            </div>
+                        )}
+
                         {/* University - Only for students */}
-                        {user?.user_metadata?.role !== 'landlord' && (
+                        {profile.role === 'student' && (
                             <>
                                 <div>
                                     <label className="block text-sm font-semibold text-slate-700 mb-2">Your University</label>

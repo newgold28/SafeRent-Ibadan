@@ -60,10 +60,11 @@ create table if not exists public.profiles (
   full_name text,
   phone_number text,
   university_id bigint references public.universities,
-  role text check (role in ('student', 'landlord')),
+  role text check (role in ('student', 'landlord', 'agent')),
   is_looking_for_roommate boolean default false,
   roommate_bio text,
-  budget_range text
+  budget_range text,
+  agency_name text
 );
 
 -- 6. Create Reviews Table
